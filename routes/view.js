@@ -49,6 +49,7 @@ router.route("/").get((req,res)=>{
     <div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">
         <button type="submit" name="action" value="update">update</button>
         <button type="submit" name="action" value="delete">delete</button>
+        <button type="submit" name="action" value="create">create</button>
     </div>
 </div>
     `;
@@ -89,10 +90,13 @@ router.route("/action").get((req,res)=>{
     }else if(req.body.action == "delete"){
         novel.chapters.splice(chapter,1)
         novel.save()
+    }else if(req.body.action == "create"){
+        novel.chapters.push({
+            text: req.body.chapter,
+            name: req.body.chapterName
+        });
+        novel.save()
     }
-
-
-    
     res.redirect("/")
 })
 module.exports = router
