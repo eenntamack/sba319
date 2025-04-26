@@ -47,8 +47,8 @@ router.route("/").get((req,res)=>{
     <input name="bookid" value="${bookId}" style="display:none;" />
     <textarea id="chapterText" name="chapterVal" style="display:none;"></textarea>
     <div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">
-        <button type="submit" name="action" value="update">update</button>
-        <button type="submit" name="action" value="delete">delete</button>
+        <button id="update" type="submit" name="action" value="update">update</button>
+        <button id="delete" type="submit" name="action" value="delete">delete</button>
         <button type="submit" name="action" value="create">create</button>
     </div>
 </div>

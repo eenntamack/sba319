@@ -10,8 +10,6 @@
             var num = 0
             let book = document.getElementById("#id#")
             let chapters = #chapters#
-
-
             
             let chapterHolder = document.getElementById("chapter")
             let chapterText = document.getElementById("chapterText")
@@ -31,7 +29,7 @@
                     let chapterHeading = document.getElementsByClassName("chapterHeader")[0];
                     chapterHeading.value = chapters[num].name
                     chapterHeading.id = num
-                    chapterText.name = "chapter"
+                    
                     chapterText.value = num
                 }
             })
@@ -43,10 +41,13 @@
                     let chapterHeading = document.getElementsByClassName("chapterHeader")[0];
                     chapterHeading.value = chapters[num].name
                     chapterHeading.id = num
-                    chapterText.name = "chapter"
+                    
                     chapterText.value = num
                 }
             })
+
+
+            let actionHandler = document.getElementById("")
         })
     </script>
     <script src="https://kit.fontawesome.com/28b38a47be.js" crossorigin="anonymous"></script>

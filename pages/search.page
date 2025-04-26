@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="books.css"/>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            let book = document.body.getElementsByClassName("book")
+
+            for(let i = 0; i<book.length;i++){
+                book[i].addEventListener("onclick",()=>{
+
+                })
+            }
+        })
+    </script>
+</head>
+<style>
+    body{
+        height: 100vh;
+        width: 100vw;
+        margin:auto;
+        overflow: hidden;
+        position:relative;
+        display:flex;
+        flex-direction:column;
+    }
+    nav{
+        display:flex;
+        background-color: blueviolet;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position:relative;
+        top:0px;
+        height:80px;
+    }
+    ul{
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+        align-items: center;
+    }
+    footer{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        position:absolute;
+        bottom:0px;
+        height:30px;
+        background-color: blueviolet;
+        align-items: center;
+
+    }
+    #content {
+    background-color: aqua;
+    overflow: auto;  /* Only show scrollbars if content overflows */
+    height: 65vh;    /* You could also use a fixed height like 500px, or adjust as needed */
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;  /* Layout items in a row (horizontally) */
+    flex-wrap: wrap;      /* Allow items to wrap to the next line if necessary */
+    padding: 20px;        /* Optional padding for spacing */
+    flex:1;
+}
+</style>
+<body>
+    <nav>
+        <ul style="list-style:none;">
+            <li><a href="/">Home</a></li>
+            <li><a href="">Create</a></li>
+            <li><a href="">Favorites</a></li>
+            <li><a href="">Search</a></li>
+            <li><a href="">Items</a></li>
+        </ul>
+    </nav>
+    <section id="content">
+        #books#
+    </section>
+    <footer>&copy; 2025 Eric Ntamack. All Rights Reserved</footer>
+</body>
+</html>

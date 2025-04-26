@@ -1,6 +1,6 @@
 # This is a story/novel creation MEN(MongoDb,Express,Node) application #
 
-## Application has 4 key features ##
+## Application has 5 key features ##
 
 1. Creating a story
 2. Adding Chapters
