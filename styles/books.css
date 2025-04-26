@@ -10,3 +10,13 @@
     align-items: center;
     margin:10px;
 }
+
+.topBody{
+    border-radius:10px;
+    border-color:black;
+    border-style:solid;
+    background-color: brown;
+    width:1000px;
+    display:flex;
+    flex-direction:column;
+}

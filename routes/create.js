@@ -30,6 +30,10 @@ router.route("/seed").get(async (req,res)=>{
         console.error(error)
       }
 })
+
+router.route("/").post(async(req,res)=>{
+    
+})
 // INDUCES
 
 

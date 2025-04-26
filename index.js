@@ -9,11 +9,13 @@ const app = express()
 const port = process.env.PORT || 3000
 
 const books =  require("./routes/create.js")
+const bookView = require("./routes/view.js")
 
 // Middleware 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use("/books",books) 
+app.use("/books/create",books) 
+app.use("/books/view",bookView)
 app.use(express.static("./styles"))
 
 app.engine("page", (filePath, data, callback) => { 
@@ -21,8 +23,8 @@ app.engine("page", (filePath, data, callback) => {
         if (err) return callback(err);
         const rendered = content.toString()
             .replace("#books#", data.books || "")
-            .replace("#id#",books.id || "")
-            .replace("#chapters#",chapters.id||"")
+            .replace("#id#",data.id|| "")
+            .replace("#chapters#",data.chapters||"")
         return callback(null, rendered);
     });
 });
@@ -57,7 +59,7 @@ app.get("/books", async (req, res) => {
     let container = "";
 
     for (let book of novels) {
-        let bookContainer = `<form id="${book._id}" class="book" action="/books/view">`;
+        let bookContainer = `<form id="${book._id}" class="book" action="/books/view" method="POST">`;
 
         if (book.image && book.image.data && book.image.contentType) {
             const base64 = book.image.data.toString("base64");
