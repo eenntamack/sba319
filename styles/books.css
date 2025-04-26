@@ -1,0 +1,12 @@
+.book{
+    width:150px;
+    height:225px;
+    background-color: blanchedalmond;
+    border-radius: 20px;
+    box-shadow: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:10px;
+}

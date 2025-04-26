@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="books.css"/>
     <script>
         document.addEventListener("DOMContentLoaded",()=>{
-            let book = document.body.getElementsByClassName("book")
+            let num = 0
+            let book = document.body.getElementById("#id#")
+            let chapters = #chapters#
+            let chapterHolder = document.body.getElementById("chapter")
+            chapterHolder.textContent = chapters[num]
 
+            book.addEventListener("DOM)
             for(let i = 0; i<book.length;i++){
-                book[i].addEventListener("onclick",()=>{
+                book.addEventListener("onclick",()=>{
                     
                 })
             }
@@ -69,14 +74,15 @@
     <nav>
         <ul style="list-style:none;">
             <li><a href="">Home</a></li>
-            <li><a href="">Create</a></li>
-            <li><a href="">Favorites</a></li>
-            <li><a href="">Search</a></li>
             <li><a href="">Items</a></li>
         </ul>
     </nav>
     <section id="content">
         #books#
+        <div id="flip"style="background-color:transparent; width:90vw; height: 300px; position: absolute; z-index: 10; display: flex; flex-direction: row; justify-content: space-between; padding:20px; bottom:2fr" >
+            <button  type="button" value="left" style="background-color: transparent; border-color: transparent;"><i id="left" class="fa-solid fa-arrow-left" style="position:relative; scale: 4; color:rgba(256,256,256,1);"></i></button>
+            <button  type="button" value="right" style="background-color: transparent; border-color: transparent;"><i id="right" class="fa-solid fa-arrow-right" style="position:relative; scale:4; color:rgba(256,256,256,1);"></i></button>
+        </div>
     </section>
     <footer>&copy; 2025 Eric Ntamack. All Rights Reserved</footer>
 </body>
