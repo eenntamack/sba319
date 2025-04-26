@@ -32,7 +32,21 @@ router.route("/seed").get(async (req,res)=>{
 })
 
 router.route("/").post(async(req,res)=>{
-    
+    const data = {}
+    content =
+    `
+    <form class="bookView" action="/books" method="POST" style="padding: 20px;">
+        <div class="topBody">
+            <input type="file" accept="image/*" />
+            <input name="title" required/> 
+            <input name="numOfchapters" type="number"/>
+        </div>
+        <button type="submit">Add</button>
+    </form>
+    `
+    data.content = content
+
+    res.render("create",data)
 })
 // INDUCES
 

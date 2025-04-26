@@ -72,7 +72,7 @@
 <body>
     <nav>
         <ul style="list-style:none;">
-            <li><a href="">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="">Create</a></li>
             <li><a href="">Favorites</a></li>
             <li><a href="">Search</a></li>
