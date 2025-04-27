@@ -16,15 +16,17 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use("/books/create",books) 
 app.use("/books/view",bookView)
-app.use(express.static("./styles"))
 
+app.use(express.static("./styles"))
+ 
 app.engine("page", (filePath, data, callback) => { 
     fs.readFile(filePath, (err, content) => {
         if (err) return callback(err);
         const rendered = content.toString()
             .replace("#books#", data.books || "")
-            .replace("#id#",data.id|| "")
+            .replace(/#id#/g,data.id|| "")
             .replace("#chapters#",data.chapters||"")
+            .replace("#content#",data.content ||"")
         return callback(null, rendered);
     });
 });
@@ -63,7 +65,7 @@ app.get("/books", async (req, res) => {
 
         if (book.image && book.image.data && book.image.contentType) {
             const base64 = book.image.data.toString("base64");
-            bookContainer += `<img src="data:${book.image.contentType};base64,${base64}" />`;
+            bookContainer += `<img src="data:${book.image.contentType};base64,${base64}" style="width:100%; height:auto; border-radius:10px;"/>`;
         }
 
         bookContainer += `<p>${book.name}</p>`;
@@ -79,7 +81,9 @@ app.get("/books", async (req, res) => {
 
     res.render("item", data);
 });
-
+app.post("/books",(req,res)=>{
+    res.redirect("/")
+})
 
 app.get("/",(req,res)=>{
     res.render("main")

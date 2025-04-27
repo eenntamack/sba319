@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const express = require("express")
 const router = express.Router()
-const multer = require("multer")
 
 
 const chapters = new mongoose.Schema({
@@ -31,12 +30,12 @@ router.route("/").get((req,res)=>{
 
     let container = "";
     container += `<form class="bookView" action="/books/view/action" method="POST"><div class="topBody">`;
-
-    container += `<input class="title" style="display:flex; flex-direction:column; width:100%; justify-content:center;" name="novelName" value="${novel.name}"/>`;
+    
+    container += `<input class="title" style="display:flex; flex-direction:column; width:auto; justify-content:center;" name="novelName" value="${novel.name}"/>`;
 
     if (novel.image && novel.image.data && novel.image.contentType) {
         const base64 = novel.image.data.toString("base64");
-        container += `<img src="data:${novel.image.contentType};base64,${base64}" />`;
+        container += `<img src="data:${novel.image.contentType};base64,${base64}" style="width: 100px; height:auto;" />`;
     }
 
     container += `</div>`;
@@ -75,28 +74,33 @@ router.route("/action").get((req,res)=>{
     res.redirect("/")
 }).post(async (req,res)=>{
     let novel =  await Books.findById(req.body.bookid)
-    let chapter = req.body.chapterVal
-    if(req.body.action == "update"){
-        if(novel.chapters.length > 0){
-            novel.chapters[chapter].text =  req.body.chapter
-            novel.chapters[chapter].name =  req.body.chapterName
-        }else{
-            novel.chapters.push({
-                text: req.body.chapter,
-                name: req.body.chapterName
-            });
-        }
-        novel.save()
-    }else if(req.body.action == "delete"){
-        novel.chapters.splice(chapter,1)
-        novel.save()
-    }else if(req.body.action == "create"){
+    
+    if(req.body.action == "create"){
         novel.chapters.push({
             text: req.body.chapter,
             name: req.body.chapterName
         });
         novel.save()
     }
-    res.redirect("/")
+    res.redirect("/books")
+}).put(async (req,res)=>{
+    let novel =  await Books.findById(req.body.bookID)
+    let chapter = req.body.updateIndex
+    if(novel.chapters.length > 0){
+        novel.chapters[chapter].text =  req.body.text
+        novel.chapters[chapter].name =  req.body.updateName
+    }else{
+        novel.chapters.push({
+            text: req.body.chapter,
+            name: req.body.chapterName
+        });
+    }
+    await novel.save()
+    res.json({success:true, message:"data deleted"})
+}).delete(async (req,res)=>{
+    let novel = await Books.findById(req.body.bookID)
+    novel.chapters.splice(req.body.deleteIndex,1)
+    await novel.save()
+    res.json({success: true, message:"data deleted"})
 })
 module.exports = router

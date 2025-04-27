@@ -16,7 +16,16 @@
     border-color:black;
     border-style:solid;
     background-color: brown;
-    width:1000px;
+    width:100px;
+    height:auto;
     display:flex;
     flex-direction:column;
+    transform: translateY(90px);
+    overflow:hidden;
+}
+
+.bookView{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }

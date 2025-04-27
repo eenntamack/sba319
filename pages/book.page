@@ -8,6 +8,7 @@
     <script>
         document.addEventListener("DOMContentLoaded",()=>{
             var num = 0
+            
             let book = document.getElementById("#id#")
             let chapters = #chapters#
             
@@ -47,7 +48,56 @@
             })
 
 
-            let actionHandler = document.getElementById("")
+            let actionDeleteHandler = document.getElementById("delete")
+            let actionUpdateHandler = document.getElementById("update")
+
+            actionDeleteHandler.addEventListener("click",async (e)=>{
+                e.preventDefault();
+                const response = await fetch("/books/view/action",{
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(
+                        {
+                            deleteIndex: num,
+                            bookID: "#id#" 
+                        }
+                    )
+                })
+                const dataSent = await response.json()
+                if (dataSent.success) {
+                    window.location.href = '/books';  // Adjust this to the correct URL
+                } else {
+                    console.error(dataSent.message);
+                }
+            })
+
+            actionUpdateHandler.addEventListener("click",async (e)=>{
+                e.preventDefault();
+                const response = await fetch("/books/view/action",{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type':'application/json'
+
+                    },
+                    body:JSON.stringify(
+                        {
+                            updateIndex: num,  
+                            text: chapterHolder.value,
+                            updateName: chapterHeading.value,
+                            bookID: "#id#",
+                        }
+                    )
+                })
+                const dataSent = await response.json()
+                if (dataSent.success) {
+                    window.location.href = '/books';  // Adjust this to the correct URL
+                } else {
+                    console.error(dataSent.message);
+                }
+            })
+
         })
     </script>
     <script src="https://kit.fontawesome.com/28b38a47be.js" crossorigin="anonymous"></script>
@@ -107,18 +157,16 @@
 <body>
     <nav>
         <ul style="list-style:none;">
-            <li><a href="">Home</a></li>
+            <li><a href="/books">Home</a></li>
             <li><a href="">Items</a></li>
         </ul>
     </nav>
     <section id="content">
+        <button  type="button" value="left" style="background-color: transparent; border-color: transparent;"><i id="left" class="fa-solid fa-arrow-left" style="position:relative; scale: 4; color:rgba(256,256,256,1);"></i></button>
         #books#
-        
+        <button  type="button" value="right" style="background-color: transparent; border-color: transparent;"><i id="right" class="fa-solid fa-arrow-right" style="position:relative; scale:4; color:rgba(256,256,256,1);"></i></button>       
     </section>
-    <div id="flip"style="background-color:transparent; width:90vw; height: 300px; position: absolute;  display: flex; flex-direction: row; justify-content: space-between; padding:20px; bottom:75%;" >
-            <button  type="button" value="left" style="background-color: transparent; border-color: transparent;"><i id="left" class="fa-solid fa-arrow-left" style="position:relative; scale: 4; color:rgba(256,256,256,1);"></i></button>
-            <button  type="button" value="right" style="background-color: transparent; border-color: transparent;"><i id="right" class="fa-solid fa-arrow-right" style="position:relative; scale:4; color:rgba(256,256,256,1);"></i></button>
-    </div>
+
     <footer>&copy; 2025 Eric Ntamack. All Rights Reserved</footer>
 </body>
 </html>
