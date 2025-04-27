@@ -41,14 +41,16 @@ router.route("/").get((req,res)=>{
     const data={}
     let novels;
 
-    if(req.body.sorted === true){
+    if(req.body.sorted){
         novels = await Books.find({ name: { $regex: req.body.bookquery, $options: "i" }}).sort({name: 1})
     }else{
         novels = await Books.find({ name: { $regex: req.body.bookquery, $options: "i" }}).sort({name: 1})
     }
 
-    if(req.body.image== true){
+    if(req.body.image){
+        
         novels = novels.filter(novel => novel.hasImage === true)
+        console.log(novels)
     }
     let container = "";
 

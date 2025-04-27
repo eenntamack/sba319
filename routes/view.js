@@ -24,6 +24,7 @@ const Books = mongoose.models.book || mongoose.model('book', booksSchema);
 router.route("/").get((req,res)=>{
     res.redirect("/")
 }).post(async (req, res) => {
+    const data = {}
     const bookId = req.body.bookid;
 
     const novel = await Books.findById(bookId);
@@ -32,7 +33,7 @@ router.route("/").get((req,res)=>{
     let container = "";
     container += `<form class="bookView" action="/books/view/action" method="POST"><div class="topBody">`;
     
-    container += `<input class="title" style="display:flex; flex-direction:column; width:auto; justify-content:center; background-color:transparent; width:500px; text-align:center; align-items:center; border-color:transparent;" name="novelName" id="bookTitle" value="${novel.name}"   readonly/>`;
+    container += `<input class="title" style="display:flex; flex-direction:column; width:auto; justify-content:center; background-color:transparent; width:500px; text-align:center; align-items:center; border-color:transparent; font-size:15px; color:#f4f4f4; pointer-events:none;" name="novelName" id="bookTitle" value="${novel.name}"   readonly/>`;
 
     if (novel.image && novel.image.data && novel.image.contentType) {
         const base64 = novel.image.data.toString("base64");
@@ -41,32 +42,27 @@ router.route("/").get((req,res)=>{
 
     container += `</div>`;
     container += `
-        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; opacity:0.3;">
-    <input class="chapterHeader" name="chapterName" value="" style="width:50%; height:30px; font-size:15px;"> 
-    <textarea id="chapter" name="chapter" rows="25" cols="100" style="font-size:15px; resize:none;" required>Hi</textarea>
-    <input name="bookid" value="${bookId}" style="display:none;" />
-    <textarea id="chapterText" name="chapterVal" style="display:none;"></textarea>
-    <div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">
-        <button id="update" type="submit" name="action" value="update">update</button>
-        <button id="delete" type="submit" name="action" value="delete">delete</button>
-        <button type="submit" name="action" value="create">create</button>
-    </div>
-</div>
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; ">
+            <input class="chapterHeader" name="chapterName" value="" style="width:50%; height:30px; font-size:15px; background-color:#545454; color:#f4f4f4; padding:10px; border-radius:10px;"> 
+            <textarea id="chapter" name="chapter" rows="25" cols="100" style="font-size:15px; resize:none; background-color:#545454; color:#f4f4f4; padding:10px; border-radius:10px;" required></textarea>
+            <input name="bookid" value="${bookId}" style="display:none;" />
+            <textarea id="chapterText" name="chapterVal" style="display:none;"></textarea>
+            <div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">
+                <button id="update" type="submit" name="action" value="update" class="bookoption">update</button>
+                <button id="delete" type="submit" name="action" value="delete" class="bookoption">delete</button>
+                <button type="submit" name="action" value="create" class="bookoption">create</button>
+            </div>
+        </div>
     `;
     container += `</form>`;
 
-    if(novel.chapters.length == 0 || !novel.chapters){
-        novel.chapters.push({
-            name:"temp",
-            text:"temp text"
-        })
+    if(novel.chapters.length > 0){
+        data.chapters = JSON.stringify(novel.chapters)
     }
 
-    const data = {
-        books: container,
-        id: bookId,
-        chapters: JSON.stringify(novel.chapters),
-    };
+
+    data.books = container;
+    data.id = bookId;
 
     res.render("book", data);
 });
@@ -87,13 +83,13 @@ router.route("/action").get((req,res)=>{
 }).put(async (req,res)=>{
     let novel =  await Books.findById(req.body.bookID)
     let chapter = req.body.updateIndex
-    if(novel.chapters.length > 0){
+    if(novel.chapters){
         novel.chapters[chapter].text =  req.body.text
         novel.chapters[chapter].name =  req.body.updateName
     }else{
         novel.chapters.push({
-            text: req.body.chapter,
-            name: req.body.chapterName
+            text: req.body.text,
+            name: req.body.updateName
         });
     }
     await novel.save()

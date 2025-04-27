@@ -27,10 +27,10 @@ app.engine("page", (filePath, data, callback) => {
         if (err) return callback(err);
         const rendered = content.toString()
             .replace("#books#", data.books || "")
-            .replace(/#id#/g,data.id|| "")
+            .replace(/#id#/g,data.id || "")
             .replace(/#currentPos#/g,data.currentPos || "")
-            .replace("#chapters#",data.chapters||"")
-            .replace("#content#",data.content ||"")
+            .replace("#chapters#",data.chapters || null)
+            .replace("#content#",data.content || "")
         return callback(null, rendered);
     });
 });
@@ -67,11 +67,11 @@ app.get("/books", async (req, res) => {
     let container = "";
 
     for (let book of novels) {
-        let bookContainer = `<form id="${book._id}" class="book" action="/books/view" method="POST" style="overflow:hidden; display:flex; flex-direction:column; background-color:black;">`;
+        let bookContainer = `<form id="${book._id}" class="book" action="/books/view" method="POST" style="overflow:hidden; display:flex; flex-direction:column; background-color:#1c1c1c;">`;
 
         if (book.image && book.image.data && book.image.contentType) {
             const base64 = book.image.data.toString("base64");
-            bookContainer += `<img src="data:${book.image.contentType};base64,${base64}" style="width:100%; height:auto; border-radius:10px; top:-4px;"/>`;
+            bookContainer += `<img src="data:${book.image.contentType};base64,${base64}" style="width:100%; height:auto; border-radius:10px; top:-30px; position:relative;"/>`;
         }
 
         bookContainer += `<p style="color:white;">${book.name}</p>`;
@@ -107,9 +107,6 @@ app.delete("/books",async(req,res)=>{
 app.get("/",(req,res)=>{
     res.render("main")
 })
-
-
-
 
 app.listen(port,()=>{
     console.log(`listening on localhost:3000`)

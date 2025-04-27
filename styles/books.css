@@ -40,6 +40,7 @@
     background-color: white;
     color:black;
     transition: background-color color 1.75s ease-in-out;
+    border-radius:5px;
 }
 
 .bookoption:hover{

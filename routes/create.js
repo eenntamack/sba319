@@ -30,6 +30,8 @@ function savingImagesSeed(){
     imageSeed.push(fs.readFileSync("./images/adventurecover_ai.jpeg"))
     imageSeed.push(fs.readFileSync("./images/fantasycover_ai.jpeg"))
     imageSeed.push(fs.readFileSync("./images/mysterycover_ai.jpeg"))
+    imageSeed.push(fs.readFileSync("./images/Glassoptical.png"))
+    imageSeed.push(fs.readFileSync("./images/Scenery_with_newbrushChallenge.png"))
     return imageSeed
 }
 
@@ -37,7 +39,7 @@ router.route("/").get((req,res)=>{
     const data = {}
     content =
     `
-    <form class="bookView" action="/books/create" method="POST" style="padding: 30px; background-color:blue; width:500px; border-radius:20px;" enctype="multipart/form-data">
+    <form class="bookView" action="/books/create" method="POST" style="padding: 30px; background-color:#3c3c3c; color:#f4f4f4; width:500px; border-radius:20px;" enctype="multipart/form-data">
         <div class="topBody" style="display:flex; flex-direction:column; justify-content:center; ">
             <h1 style="font-size: 30px;">Add an image</h1>
             <input type="file" name="image" accept="image/*" />
@@ -67,9 +69,12 @@ router.route("/").get((req,res)=>{
     } else {
         newBook = new Books({
             name: req.body.title,
+            chapters: [{
+                name:"temp chapter",
+                text:"temp text"
+            }]
         });
     }
-
     try {
         const savedBook = await newBook.save();
         console.log("Book saved successfully");
@@ -135,8 +140,51 @@ router.route("/seed").get(async (req,res)=>{
             hasImage:true
         },
         {
+            name: "The Void",
+            image:{ 
+                data:seed[3],
+                contentType: "image/png"
+            },
+            chapters:[
+                {
+                    name:`The Descent`,
+                    text:`A strange emptiness filled the air as Nyx stood at the edge of the precipice, gazing into the abyss below. The Void was a place where time and space twisted into nothingness, a realm where the laws of the universe held no sway. Nyx had heard the legends, of course—the ancient whispers of those who had ventured too far and never returned. But she had to know. The Void called to her, a silent promise of something beyond what the world could offer. With a final breath, she stepped forward. Her body fell, not with the weight of gravity but as if the very air around her was pushing her deeper into the darkness. The wind ceased to exist, and the light of the world above her faded into blackness, leaving her to drift alone. For what felt like an eternity, Nyx plummeted into the unknown, her mind racing with fear, curiosity, and the chilling sense that the Void itself was watching her.`
+                },
+                {
+                    name:`The Endless Reflection`,
+                    text:`When Nyx's feet finally touched solid ground, the sensation was as unsettling as the fall itself. She was no longer in the world she had known. The Void had swallowed her whole, but here, there were no walls, no boundaries. Everything stretched infinitely in all directions—an endless expanse of darkness that felt more like a reflection than a place. The ground beneath her seemed to pulse with a strange energy, alive with whispers that echoed through her mind. It was as if the Void itself was trying to communicate, its ancient consciousness reaching out to her. The deeper she ventured, the more the world around her began to shift, with images flickering like broken memories. Faces, places, and events that Nyx could not place danced in the void, each one appearing for a moment before dissolving into the endless black. She realized then that the Void was not a place; it was a state of being. And as she walked through this endless reflection, she felt herself slipping away, her identity fading like the shadows that surrounded her. The Void was not merely a destination—it was the undoing of everything, including herself.`
+                }
+            ]
+        },
+        {
+            name: "The Sky",
+            image:{ 
+                data:seed[4],
+                contentType: "image/png"
+            },
+            chapters:[
+                {
+                    name:'The Edge of the Horizon',
+                    text: `It was on the edge of the world, where the sky kissed the earth, that Elara stood, watching the sun dip below the horizon. The air was thick with the scent of saltwater, and the faintest of breezes tugged at her cloak. The rumors of the Sky Gate had haunted her thoughts for years—stories of a hidden realm above the clouds, where time flowed differently and the stars themselves were said to be within reach. Her journey had begun with nothing but a map passed down by her grandmother, a cryptic message that pointed to the forgotten lands of the sky. Now, standing on the cliff's edge, Elara felt the weight of destiny pressing against her chest. The sky was no longer just a canvas for her dreams; it was a path she was destined to walk.`
+                 
+                },
+                {
+                    name:'The First Flight',
+                    text:'The night came quickly, and with it, the strange silence of the Sky Gate. Elara had followed the map through dense forests, across rivers, and up the towering peaks of the Shattered Mountains, until she reached the temple—a crumbling structure that seemed to pulse with energy. Inside, an ancient machine stood, its gears long rusted and its purpose unclear. But there, amidst the dust and cobwebs, was a single glowing crystal, suspended in mid-air. Elara knew, without a doubt, that this was the key. With trembling hands, she activated the mechanism, and the world around her began to shift. The ground trembled beneath her, and in an instant, she was lifted into the air, the Sky Gate opening before her like a mouth ready to swallow her whole. For the first time in her life, Elara felt what it was like to truly fly.'
+                },
+                {
+                    name:'The City Above the Clouds',
+                    text:`The journey through the Sky Gate was unlike anything Elara had ever experienced. As she emerged from the swirling vortex, the world around her opened up into a breathtaking sight—a city suspended among the clouds, its towers reaching toward the heavens, connected by shimmering bridges made of light. The people here were unlike any she had ever known, their skin glistening with the brilliance of stars, their eyes reflecting the vastness of the sky itself. They called themselves the Skyborn, guardians of the secrets of the skies. Elara had not just discovered a hidden realm; she had stumbled upon an entire civilization that had lived above the clouds for centuries. But as she stepped into their city, a sense of unease washed over her. The Skyborn were not welcoming her with open arms. Something was amiss, and Elara was determined to uncover the truth behind the Sky Gate, before the skies themselves turned against her.`
+                }
+            ]
+        },
+        {
             name:"A book without a face",
-        }
+            chapters: [{
+                name:"temp chapter",
+                text:"temp text"
+            }]
+        },
     ];
 
     // Create the books and save them individually
