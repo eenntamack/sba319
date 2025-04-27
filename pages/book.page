@@ -35,8 +35,13 @@
             let left = document.getElementById("left")
             let right = document.getElementById("right")
 
+            left.style.opacity = 0.5;
+
             left.addEventListener("click",()=>{
+                
                 if(num > 0){
+                    left.style.opacity = 1
+                    right.style.opacity = 1
                     num --
                     chapterHolder.value = chapters[num].text
                     let chapterHeading = document.getElementsByClassName("chapterHeader")[0];
@@ -44,11 +49,21 @@
                     chapterHeading.id = num
                     
                     chapterText.value = num
+                }else{
+                    left.style.opacity = 0.5
+                    right.style.opacity = 1
+                }
+                if(num == 0){
+                    left.style.opacity = 0.5
                 }
             })
 
             right.addEventListener("click",()=>{
+
+                
                 if(num < chapters.length - 1){
+                    right.style.opacity = 1
+                    left.style.opacity = 1;
                     num ++
                     chapterHolder.value = chapters[num].text
                     let chapterHeading = document.getElementsByClassName("chapterHeader")[0];
@@ -56,6 +71,12 @@
                     chapterHeading.id = num
                     
                     chapterText.value = num
+                }else{
+                    right.style.opacity = 0.5
+                    left.style.opacity = 1
+                }
+                if(num == chapters.length - 1){
+                    right.style.opacity = 0.5
                 }
             })
 

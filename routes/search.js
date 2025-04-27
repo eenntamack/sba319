@@ -27,10 +27,10 @@ router.route("/").get((req,res)=>{
         <input name="bookquery" style="display:flex; justify-content:center; align-items:start; width:500px; height:40px; font-size:25px; margin:10px; background-color:#545454; color:#f4f4f4; border-radius:10px;"></input>
         <div style="display:flex; justify-content:center; align-items:center; margin:10px;">
         <label style="margin:10px; color:#f4f4f4; font-size:25px;">
-            <input type="radio" name="sorted" style="transform:scale(1.5);"/> Sorted
+            <input type="checkbox" name="choice" style="transform:scale(1.5);"/> Sorted
         </label>
         <label style="margin:10px; color:#f4f4f4; font-size:25px;">
-             <input type="radio" name="image" style="transform:scale(1.5);"> Has Image
+             <input type="checkbox" name="image"  style="transform:scale(1.5);"> Has Image
         </label>
         </div>
         <button class="bookoption" type="submit" style="margin:10px; background-color:#545454; color:#f4f4f4; font-size: 15px;">Search</button>

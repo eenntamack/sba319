@@ -154,7 +154,7 @@ router.route("/seed").get(async (req,res)=>{
                     name:`The Endless Reflection`,
                     text:`When Nyx's feet finally touched solid ground, the sensation was as unsettling as the fall itself. She was no longer in the world she had known. The Void had swallowed her whole, but here, there were no walls, no boundaries. Everything stretched infinitely in all directions—an endless expanse of darkness that felt more like a reflection than a place. The ground beneath her seemed to pulse with a strange energy, alive with whispers that echoed through her mind. It was as if the Void itself was trying to communicate, its ancient consciousness reaching out to her. The deeper she ventured, the more the world around her began to shift, with images flickering like broken memories. Faces, places, and events that Nyx could not place danced in the void, each one appearing for a moment before dissolving into the endless black. She realized then that the Void was not a place; it was a state of being. And as she walked through this endless reflection, she felt herself slipping away, her identity fading like the shadows that surrounded her. The Void was not merely a destination—it was the undoing of everything, including herself.`
                 }
-            ]
+            ],hasImage:true
         },
         {
             name: "The Sky",
@@ -176,7 +176,7 @@ router.route("/seed").get(async (req,res)=>{
                     name:'The City Above the Clouds',
                     text:`The journey through the Sky Gate was unlike anything Elara had ever experienced. As she emerged from the swirling vortex, the world around her opened up into a breathtaking sight—a city suspended among the clouds, its towers reaching toward the heavens, connected by shimmering bridges made of light. The people here were unlike any she had ever known, their skin glistening with the brilliance of stars, their eyes reflecting the vastness of the sky itself. They called themselves the Skyborn, guardians of the secrets of the skies. Elara had not just discovered a hidden realm; she had stumbled upon an entire civilization that had lived above the clouds for centuries. But as she stepped into their city, a sense of unease washed over her. The Skyborn were not welcoming her with open arms. Something was amiss, and Elara was determined to uncover the truth behind the Sky Gate, before the skies themselves turned against her.`
                 }
-            ]
+            ],hasImage:true
         },
         {
             name:"A book without a face",
