@@ -12,6 +12,7 @@
             let book = document.getElementById("#id#")
             let chapters = #chapters#
             
+            let bookTitle = document.getElementById("bookTitle");
             let chapterHolder = document.getElementById("chapter")
             let chapterText = document.getElementById("chapterText")
             chapterText.value = num

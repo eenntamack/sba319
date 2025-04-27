@@ -15,7 +15,8 @@ const booksSchema = new mongoose.Schema({
     image:{
         data: Buffer,
         contentType: String
-    }
+    },
+    hasImage: {type:Boolean,default:false}
 });
 const Books = mongoose.models.book || mongoose.model('book', booksSchema);
 
@@ -31,7 +32,7 @@ router.route("/").get((req,res)=>{
     let container = "";
     container += `<form class="bookView" action="/books/view/action" method="POST"><div class="topBody">`;
     
-    container += `<input class="title" style="display:flex; flex-direction:column; width:auto; justify-content:center;" name="novelName" value="${novel.name}"/>`;
+    container += `<input class="title" style="display:flex; flex-direction:column; width:auto; justify-content:center; background-color:transparent; width:500px; text-align:center; align-items:center; border-color:transparent;" name="novelName" id="bookTitle" value="${novel.name}"   readonly/>`;
 
     if (novel.image && novel.image.data && novel.image.contentType) {
         const base64 = novel.image.data.toString("base64");

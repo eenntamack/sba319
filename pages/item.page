@@ -7,15 +7,37 @@
     <link rel="stylesheet" href="books.css"/>
     <script>
         document.addEventListener("DOMContentLoaded",()=>{
+            let num = 0
             let book = document.body.getElementsByClassName("book")
+            
+            let deleteBooks = document.body.getElementsByClassName("deleteBook")
 
-            for(let i = 0; i<book.length;i++){
-                book[i].addEventListener("onclick",()=>{
-
+            for(let i = 0 ; i < deleteBooks.length;i++){
+                deleteBooks[i].addEventListener("click",async(e)=>{
+                    console.log("clicked")
+                    e.preventDefault()
+                const response = await fetch("/books",{
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify(
+                        {
+                            bookID: deleteBooks[i].value,
+                        }
+                    )
                 })
-            }
+                const dataSent = await response.json()
+                if (dataSent.success) {
+                    window.location.href = '/books';  // Adjust this to the correct URL
+                } else {
+                    console.error(dataSent.message);
+                }
+                })
+            }  
         })
     </script>
+    <script src="https://kit.fontawesome.com/28b38a47be.js" crossorigin="anonymous"></script>
 </head>
 <style>
     body{
@@ -26,10 +48,13 @@
         position:relative;
         display:flex;
         flex-direction:column;
+        background:black;
     }
     nav{
         display:flex;
-        background-color: blueviolet;
+        font-size:20px;
+        background-color:transparent;
+
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -65,8 +90,10 @@
     display: flex;
     flex-direction: row;  /* Layout items in a row (horizontally) */
     flex-wrap: wrap;      /* Allow items to wrap to the next line if necessary */
-    padding: 20px;        /* Optional padding for spacing */
+    padding: 40px;        /* Optional padding for spacing */
     flex:1;
+    justify-content:center;
+    align-items:center;
 }
 </style>
 <body>
@@ -74,14 +101,17 @@
         <ul style="list-style:none;">
             <li><a href="/">Home</a></li>
             <li><a href="/books/create">Create</a></li>
-            <li><a href="">Favorites</a></li>
-            <li><a href="">Search</a></li>
-            <li><a href="">Items</a></li>
+            <li><a href="/books/search">Search</a></li>
         </ul>
     </nav>
-    <section id="content">
-        #books#
+
+    <div style="display:flex; flex-direction:row; width:100%; align-content:center;">
+
+    <section id="content">       
+        #books#     
     </section>
+
+    </div>
     <footer>&copy; 2025 Eric Ntamack. All Rights Reserved</footer>
 </body>
 </html>
