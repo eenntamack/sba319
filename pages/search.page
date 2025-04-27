@@ -119,7 +119,18 @@
     right:0px;
     transition: right 0.25s ease-in-out;
     position:relative;
+    
+    .bookoption{
+    background-color: #f4f4f4;
+    color:#545454;
+    transition: background-color color 1.75s ease-in-out;
+    border-radius:5px;
+}
 
+    .bookoption:hover{
+        background-color: #545454;
+        color:#f4f4f4;
+    }
     
 }
 

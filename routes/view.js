@@ -44,7 +44,7 @@ router.route("/").get((req,res)=>{
     container += `
         <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; ">
             <input class="chapterHeader" name="chapterName" value="" style="width:50%; height:30px; font-size:15px; background-color:#545454; color:#f4f4f4; padding:10px; border-radius:10px;"> 
-            <textarea id="chapter" name="chapter" rows="25" cols="100" style="font-size:15px; resize:none; background-color:#545454; color:#f4f4f4; padding:10px; border-radius:10px;" required></textarea>
+            <textarea id="chapter" name="chapter" rows="25" cols="100" style="font-size:15px; resize:none; background-color:#545454; color:#f4f4f4; padding:10px; border-radius:10px; margin-top:5px;" required></textarea>
             <input name="bookid" value="${bookId}" style="display:none;" />
             <textarea id="chapterText" name="chapterVal" style="display:none;"></textarea>
             <div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">

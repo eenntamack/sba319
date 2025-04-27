@@ -37,13 +37,13 @@
     align-items: center;
 }
 .bookoption{
-    background-color: white;
-    color:black;
+    background-color: #f4f4f4;
+    color:#545454;
     transition: background-color color 1.75s ease-in-out;
     border-radius:5px;
 }
 
 .bookoption:hover{
-    background-color: rgb(0, 0, 0);
-    color:white; 
+    background-color: #545454;
+    color:#f4f4f4;
 }

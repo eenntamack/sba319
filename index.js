@@ -83,7 +83,6 @@ app.get("/books", async (req, res) => {
         container += bookContainer;
     }
 
-
     const data = {
         books: container,
         currentPos: `data-current-pos="0"` 
