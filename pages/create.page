@@ -26,10 +26,13 @@
         position:relative;
         display:flex;
         flex-direction:column;
+        background-color:black;
     }
     nav{
         display:flex;
         font-size:20px;
+        background-color:transparent;
+
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -63,20 +66,17 @@
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction: row;  /* Layout items in a row (horizontally) */
+    flex-direction: column;  /* Layout items in a row (horizontally) */
     flex-wrap: wrap;      /* Allow items to wrap to the next line if necessary */
     padding: 20px;        /* Optional padding for spacing */
-    flex:1;
+    justify-content:center;
+    align-items:center;
 }
 </style>
 <body>
     <nav>
         <ul style="list-style:none;">
-            <li><a href="/">Home</a></li>
-            <li><a href="/books/create">Create</a></li>
-            <li><a href="">Favorites</a></li>
-            <li><a href="">Search</a></li>
-            <li><a href="">Items</a></li>
+            <li><a href="/books">Books</a></li>
         </ul>
     </nav>
     <section id="content">

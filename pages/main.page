@@ -19,7 +19,7 @@
 
     main {
       flex: 1; /* Fill remaining space above footer */
-      background-color: aqua;
+      background-color: #978897;
       overflow: auto;
       width: 100%;
       display: flex;
@@ -52,9 +52,8 @@
 <body>
     <main>
         <div>
-            <h1>Create your very own Library</h1>
-            <a href="/books">Start Here</a>
-            <a href="">View HATEOAS usage</a>
+            <h1 style="font-size:50px;">Create your own Books</h1>
+            <a href="/books" style="font-size:30px;">Start Here</a>
         </div>
 
     </main>

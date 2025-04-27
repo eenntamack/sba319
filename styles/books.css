@@ -24,7 +24,7 @@
     height:auto;
     display:flex;
     flex-direction:column;
-    transform: translateY(90px);
+    transform: translateY(110px);
     justify-content: center;
     overflow:hidden;
     align-items: center;

@@ -112,15 +112,19 @@
         position:relative;
         display:flex;
         flex-direction:column;
+        background-color:black;
     }
     nav{
         display:flex;
-        background-color: blueviolet;
+        font-size:20px;
+        background-color:transparent;
+
         flex-direction: row;
         justify-content: center;
         align-items: center;
         position:relative;
         top:0px;
+        height:80px;
     }
     ul{
         height: auto;
@@ -158,8 +162,7 @@
 <body>
     <nav>
         <ul style="list-style:none;">
-            <li><a href="/books">Home</a></li>
-            <li><a href="">Items</a></li>
+            <li><a href="/books">Books</a></li>
         </ul>
     </nav>
     <section id="content">

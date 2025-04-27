@@ -39,7 +39,17 @@ router.route("/").get((req,res)=>{
     res.render("search",data)
 }).post(async(req,res)=>{
     const data={}
-    novels = await Books.find({ name: { $regex: req.body.bookquery, $options: "i" }})
+    let novels;
+
+    if(req.body.sorted === true){
+        novels = await Books.find({ name: { $regex: req.body.bookquery, $options: "i" }}).sort({name: 1})
+    }else{
+        novels = await Books.find({ name: { $regex: req.body.bookquery, $options: "i" }}).sort({name: 1})
+    }
+
+    if(req.body.image== true){
+        novels = novels.filter(novel => novel.hasImage === true)
+    }
     let container = "";
 
     for (let book of novels) {
@@ -53,7 +63,6 @@ router.route("/").get((req,res)=>{
         bookContainer += `<p style="color:white;">${book.name}</p>`;
         bookContainer += `<div style="display:flex; flex-direction:row; justify-content:center; align-items:center;">`
         bookContainer += `<button class="bookoption" type="submit" name="bookid" value=${book._id}>View</button>`
-        bookContainer += `<button class="deleteBook bookoption" type="button" name="delete" value="${book._id}">Remove</button>`
         bookContainer += `</div>`
         bookContainer += `</form>`;
         container += bookContainer;

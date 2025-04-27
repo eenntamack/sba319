@@ -48,7 +48,7 @@
         position:relative;
         display:flex;
         flex-direction:column;
-        background:black;
+        background-color:black;
     }
     nav{
         display:flex;

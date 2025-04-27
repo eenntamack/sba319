@@ -37,12 +37,14 @@ router.route("/").get((req,res)=>{
     const data = {}
     content =
     `
-    <form class="bookView" action="/books/create" method="POST" style="padding: 20px;" enctype="multipart/form-data">
-        <div class="topBody">
+    <form class="bookView" action="/books/create" method="POST" style="padding: 30px; background-color:blue; width:500px; border-radius:20px;" enctype="multipart/form-data">
+        <div class="topBody" style="display:flex; flex-direction:column; justify-content:center; ">
+            <h1 style="font-size: 30px;">Add an image</h1>
             <input type="file" name="image" accept="image/*" />
-            <input name="title" required/> 
+            <h1 style="font-size: 30px;">Title</h1>
+            <input name="title" style="height:30px; font-size:25px;" required/> 
         </div>
-        <button type="submit">Add</button>
+        <button type="submit" style="margin-top:10px;">Add</button>
     </form>
     `
     data.content = content
@@ -59,7 +61,8 @@ router.route("/").get((req,res)=>{
             image: {
                 data: req.file.buffer,
                 contentType: req.file.mimetype
-            }
+            },
+            hasImage:true
         });
     } else {
         newBook = new Books({
@@ -130,6 +133,9 @@ router.route("/seed").get(async (req,res)=>{
                 }
             ],
             hasImage:true
+        },
+        {
+            name:"A book without a face",
         }
     ];
 
